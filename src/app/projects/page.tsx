@@ -27,11 +27,14 @@ export default function Projects() {
       {/* Navigation */}
       <nav className="bg-slate-900/95 backdrop-blur-md shadow-2xl border-b border-slate-700/50 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-          <div>
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-              Elegant Steel Hardware
-            </h1>
-            <p className="text-slate-400 text-sm">Project Management</p>
+          <div className="flex items-center gap-3">
+            <img src="/elegant logo.jpg" alt="Elegant Steel Hardware" className="h-10 w-10 rounded-lg shadow-lg object-cover" />
+            <div>
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                Elegant Steel Hardware
+              </h1>
+              <p className="text-slate-400 text-sm">Project Management</p>
+            </div>
           </div>
         </div>
       </nav>
