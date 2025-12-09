@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Footer from '@/components/Footer'
-import { BarChart3, AlertCircle, TrendingUp, Users, ArrowLeft, Settings } from 'lucide-react'
+import { BarChart3, AlertCircle, TrendingUp, Users, ArrowLeft, Settings, ShoppingCart, DollarSign, BarChart2 } from 'lucide-react'
 
 export default function Dashboard() {
   const stats = [
@@ -121,6 +121,39 @@ export default function Dashboard() {
           {/* Quick Actions */}
           <div className="grid md:grid-cols-3 gap-6">
             <Link
+              href="/orders"
+              className="bg-gradient-to-br from-red-600/20 to-red-700/20 border border-red-500/50 rounded-lg p-6 hover:shadow-lg hover:shadow-red-500/20 hover:border-red-400/70 transition-all duration-300 transform hover:scale-105"
+            >
+              <div className="flex items-center gap-2 mb-2">
+                <ShoppingCart size={20} className="text-red-400" />
+                <h4 className="font-bold text-white">Orders & Sales</h4>
+              </div>
+              <p className="text-slate-400 text-sm">Create and manage customer orders</p>
+            </Link>
+
+            <Link
+              href="/customer-statements"
+              className="bg-gradient-to-br from-cyan-600/20 to-cyan-700/20 border border-cyan-500/50 rounded-lg p-6 hover:shadow-lg hover:shadow-cyan-500/20 hover:border-cyan-400/70 transition-all duration-300 transform hover:scale-105"
+            >
+              <div className="flex items-center gap-2 mb-2">
+                <Users size={20} className="text-cyan-400" />
+                <h4 className="font-bold text-white">Customer Accounts</h4>
+              </div>
+              <p className="text-slate-400 text-sm">Track customer balances & statements</p>
+            </Link>
+
+            <Link
+              href="/finances"
+              className="bg-gradient-to-br from-green-600/20 to-green-700/20 border border-green-500/50 rounded-lg p-6 hover:shadow-lg hover:shadow-green-500/20 hover:border-green-400/70 transition-all duration-300 transform hover:scale-105"
+            >
+              <div className="flex items-center gap-2 mb-2">
+                <DollarSign size={20} className="text-green-400" />
+                <h4 className="font-bold text-white">Finances</h4>
+              </div>
+              <p className="text-slate-400 text-sm">Monitor income & expenses</p>
+            </Link>
+
+            <Link
               href="/projects"
               className="bg-gradient-to-br from-blue-600/20 to-blue-700/20 border border-blue-500/50 rounded-lg p-6 hover:shadow-lg hover:shadow-blue-500/20 hover:border-blue-400/70 transition-all duration-300 transform hover:scale-105"
             >
@@ -130,7 +163,7 @@ export default function Dashboard() {
 
             <Link
               href="/inventory"
-              className="bg-gradient-to-br from-green-600/20 to-green-700/20 border border-green-500/50 rounded-lg p-6 hover:shadow-lg hover:shadow-green-500/20 hover:border-green-400/70 transition-all duration-300 transform hover:scale-105"
+              className="bg-gradient-to-br from-amber-600/20 to-amber-700/20 border border-amber-500/50 rounded-lg p-6 hover:shadow-lg hover:shadow-amber-500/20 hover:border-amber-400/70 transition-all duration-300 transform hover:scale-105"
             >
               <h4 className="font-bold text-white mb-2">Check Inventory</h4>
               <p className="text-slate-400 text-sm">Monitor material stock and levels</p>
