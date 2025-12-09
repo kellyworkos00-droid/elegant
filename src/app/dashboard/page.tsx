@@ -1,10 +1,32 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import Footer from '@/components/Footer'
-import { BarChart3, AlertCircle, TrendingUp, Users, ArrowLeft, Settings, ShoppingCart, DollarSign, BarChart2 } from 'lucide-react'
+import { BarChart3, AlertCircle, TrendingUp, Users, ArrowLeft, Settings, ShoppingCart, DollarSign, BarChart2, Award, LogOut } from 'lucide-react'
+import { getUser, logout } from '@/lib/auth'
+
+interface User {
+  id: number
+  email: string
+  name: string
+  role: 'Admin' | 'Employee'
+  status: string
+}
 
 export default function Dashboard() {
+  const router = useRouter()
+  const [user, setUser] = useState<User | null>(null)
+
+  useEffect(() => {
+    const currentUser = getUser()
+    if (!currentUser) {
+      router.push('/login')
+    } else {
+      setUser(currentUser)
+    }
+  }, [])
   const stats = [
     { label: 'Active Projects', value: '12', color: 'from-blue-500 to-blue-600', icon: TrendingUp },
     { label: 'Pending Quotes', value: '5', color: 'from-yellow-500 to-yellow-600', icon: BarChart3 },
@@ -29,8 +51,23 @@ export default function Dashboard() {
               <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
                 Elegant Steel Hardware
               </h1>
-              <p className="text-slate-400 text-sm">Admin Dashboard</p>
+              <p className="text-slate-400 text-sm">{user?.role} Dashboard</p>
             </div>
+          </div>
+          <div className="flex items-center gap-4">
+            {user && (
+              <div className="text-right">
+                <p className="text-white font-semibold">{user.name}</p>
+                <p className="text-slate-400 text-xs">{user.email}</p>
+              </div>
+            )}
+            <button
+              onClick={() => logout()}
+              className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-all duration-200"
+            >
+              <LogOut size={18} />
+              Logout
+            </button>
           </div>
         </div>
       </nav>
@@ -41,10 +78,12 @@ export default function Dashboard() {
             <ArrowLeft size={20} />
             Back to Home
           </Link>
-          <Link href="/admin/users" className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-purple-700 text-white px-4 py-2 rounded-lg hover:from-purple-500 hover:to-purple-600 transition-all duration-200 shadow-lg hover:shadow-purple-500/50 font-semibold">
-            <Settings size={18} />
-            Manage Users
-          </Link>
+          {user?.role === 'Admin' && (
+            <Link href="/admin/users" className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-purple-700 text-white px-4 py-2 rounded-lg hover:from-purple-500 hover:to-purple-600 transition-all duration-200 shadow-lg hover:shadow-purple-500/50 font-semibold">
+              <Settings size={18} />
+              Manage Users
+            </Link>
+          )}
         </div>
 
         <div className="space-y-8">
@@ -176,10 +215,70 @@ export default function Dashboard() {
               <h4 className="font-bold text-white mb-2">Manage Quotes</h4>
               <p className="text-slate-400 text-sm">Create and track customer quotes</p>
             </Link>
+
+            <Link
+              href="/performance"
+              className="bg-gradient-to-br from-purple-600/20 to-purple-700/20 border border-purple-500/50 rounded-lg p-6 hover:shadow-lg hover:shadow-purple-500/20 hover:border-purple-400/70 transition-all duration-300 transform hover:scale-105"
+            >
+              <div className="flex items-center gap-2 mb-2">
+                <Award size={20} className="text-purple-400" />
+                <h4 className="font-bold text-white">Employee Performance</h4>
+              </div>
+              <p className="text-slate-400 text-sm">Monitor team member performance metrics</p>
+            </Link>
+          </div>
+
+          {/* Mobile Module Grid View */}
+          <div className="lg:hidden mt-8">
+            <h3 className="text-2xl font-bold text-white mb-4">Quick Access Modules</h3>
+            <div className="grid grid-cols-3 gap-4">
+              <MobileModule icon={ShoppingCart} label="Orders" href="/orders" color="red" />
+              <MobileModule icon={Users} label="Customers" href="/customer-statements" color="cyan" />
+              <MobileModule icon={DollarSign} label="Finances" href="/finances" color="green" />
+              <MobileModule icon={BarChart2} label="Projects" href="/projects" color="blue" />
+              <MobileModule icon={AlertCircle} label="Inventory" href="/inventory" color="amber" />
+              <MobileModule icon={BarChart3} label="Quotes" href="/quotes" color="yellow" />
+              <MobileModule icon={Award} label="Performance" href="/performance" color="purple" />
+              {user?.role === 'Admin' && (
+                <MobileModule icon={Settings} label="Users" href="/admin/users" color="pink" />
+              )}
+              <MobileModule icon={TrendingUp} label="Analytics" href="/dashboard" color="indigo" />
+            </div>
           </div>
         </div>
       </div>
       <Footer />
     </div>
+  )
+}
+
+interface MobileModuleProps {
+  icon: React.ComponentType<any>
+  label: string
+  href: string
+  color: string
+}
+
+function MobileModule({ icon: Icon, label, href, color }: MobileModuleProps) {
+  const colorStyles: Record<string, string> = {
+    red: 'bg-red-500/20 text-red-300 hover:bg-red-500/30',
+    cyan: 'bg-cyan-500/20 text-cyan-300 hover:bg-cyan-500/30',
+    green: 'bg-green-500/20 text-green-300 hover:bg-green-500/30',
+    blue: 'bg-blue-500/20 text-blue-300 hover:bg-blue-500/30',
+    amber: 'bg-amber-500/20 text-amber-300 hover:bg-amber-500/30',
+    yellow: 'bg-yellow-500/20 text-yellow-300 hover:bg-yellow-500/30',
+    purple: 'bg-purple-500/20 text-purple-300 hover:bg-purple-500/30',
+    pink: 'bg-pink-500/20 text-pink-300 hover:bg-pink-500/30',
+    indigo: 'bg-indigo-500/20 text-indigo-300 hover:bg-indigo-500/30'
+  }
+
+  return (
+    <Link
+      href={href}
+      className={`flex flex-col items-center justify-center p-4 rounded-lg border border-slate-600/50 transition-all duration-200 active:scale-95 ${colorStyles[color]}`}
+    >
+      <Icon size={32} className="mb-2" />
+      <span className="text-xs font-semibold text-center">{label}</span>
+    </Link>
   )
 }
