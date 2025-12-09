@@ -2,14 +2,15 @@
 
 import Link from 'next/link'
 import { Plus, Mail, Phone, Badge, ArrowLeft, Users } from 'lucide-react'
+import { useState } from 'react'
 
 export default function Employees() {
-  const [employees] = [
+  const [employees] = useState([
     { id: 1, name: 'John Smith', role: 'Lead Fabricator', email: 'john@elegantsteelhw.com', phone: '555-1001', status: 'Active', dept: 'Fabrication' },
     { id: 2, name: 'Maria Garcia', role: 'Welder', email: 'maria@elegantsteelhw.com', phone: '555-1002', status: 'Active', dept: 'Fabrication' },
     { id: 3, name: 'Robert Chen', role: 'CNC Operator', email: 'robert@elegantsteelhw.com', phone: '555-1003', status: 'Active', dept: 'Operations' },
     { id: 4, name: 'Sarah Johnson', role: 'Quality Inspector', email: 'sarah@elegantsteelhw.com', phone: '555-1004', status: 'Active', dept: 'Quality' },
-  ]
+  ])
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">

@@ -2,13 +2,14 @@
 
 import Link from 'next/link'
 import { CheckCircle2, Clock, AlertCircle, Zap, ArrowLeft, Filter } from 'lucide-react'
+import { useState } from 'react'
 
 export default function MyTasks() {
-  const [tasks] = [
+  const [tasks] = useState([
     { id: 1, title: 'Fabricate Steel Gates', project: 'Commercial Gates', dueDate: '2025-01-15', status: 'In Progress', priority: 'High', assignee: 'John Smith', progress: 75 },
     { id: 2, title: 'Weld Railing Segments', project: 'Custom Railings', dueDate: '2025-01-18', status: 'In Progress', priority: 'Medium', assignee: 'Maria Garcia', progress: 60 },
     { id: 3, title: 'Quality Inspection', project: 'Metal Frames', dueDate: '2025-01-10', status: 'Completed', priority: 'High', assignee: 'Sarah Johnson', progress: 100 },
-  ]
+  ])
 
   const getPriorityColor = (priority: string) => {
     switch (priority) {
