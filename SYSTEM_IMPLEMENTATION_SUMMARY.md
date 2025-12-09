@@ -192,6 +192,14 @@ d:\project 902\
 
 ## Demo Credentials
 
+### Owner/Admin
+```
+Email: zachnduane057@gmail.com
+Password: zach
+Role: Admin
+```
+**Features**: Full access to all modules (owner/admin)
+
 ### Admin
 ```
 Email: admin@elegantsteelhw.com
@@ -217,7 +225,7 @@ Role: Employee
 - **3 Auth Utilities**: getUser(), getToken(), logout()
 - **20+ Icons**: Lucide React icons throughout UI
 - **2 Email Templates**: User invitations and order confirmations
-- **2 Demo Accounts**: For testing admin and employee features
+- **3 Demo Accounts**: Owner/admin, admin, and employee for testing
 
 ## Live Features
 
@@ -235,6 +243,7 @@ Role: Employee
 1. **Start Server**: `npm run dev`
 2. **Visit Login**: http://localhost:3001/login
 3. **Use Demo Credentials**: 
+   - Owner/Admin: zachnduane057@gmail.com / zach
    - Admin: admin@elegantsteelhw.com / password123
    - Employee: employee@elegantsteelhw.com / password123
 4. **Test Mobile**: Resize browser to mobile width or use device emulation

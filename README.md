@@ -94,6 +94,11 @@ The system includes demo accounts for testing:
 - Password: `password123`
 - Access: Full system including user management
 
+**Owner Account (Full Access):**
+- Email: `zachnduane057@gmail.com`
+- Password: `zach`
+- Access: Full system (owner/admin)
+
 **Employee Account:**
 - Email: `employee@elegantsteelhw.com`
 - Password: `password123`

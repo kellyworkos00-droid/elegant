@@ -9,6 +9,7 @@ The Elegant Steel Hardware platform now includes a complete authentication syste
 - **URL**: `http://localhost:3001/login`
 - **Email/Password Authentication**: Users sign in with email and password
 - **Demo Credentials**:
+  - Owner/Admin: `zachnduane057@gmail.com` / `zach`
   - Admin: `admin@elegantsteelhw.com` / `password123`
   - Employee: `employee@elegantsteelhw.com` / `password123`
 - **Professional UI**: Dark theme matching app design with company branding

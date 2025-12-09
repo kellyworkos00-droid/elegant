@@ -17,6 +17,14 @@ const DEMO_USERS = [
     name: 'John Employee',
     role: 'Employee',
     status: 'Active'
+  },
+  {
+    id: 3,
+    email: 'zachnduane057@gmail.com',
+    password: 'zach',
+    name: 'Zach Nd',
+    role: 'Admin',
+    status: 'Active'
   }
 ]
 

@@ -201,7 +201,10 @@ The current system uses demo data for testing. For production:
 ## Testing Instructions
 
 1. Visit `http://localhost:3001/login`
-2. Use demo credentials to log in
+2. Use demo credentials to log in:
+  - Owner/Admin: `zachnduane057@gmail.com` / `zach`
+  - Admin: `admin@elegantsteelhw.com` / `password123`
+  - Employee: `employee@elegantsteelhw.com` / `password123`
 3. Verify dashboard displays user information
 4. Try logging out and accessing protected routes
 5. Test mobile view by resizing browser or using device emulation

@@ -6,6 +6,7 @@
 ## Demo Accounts
 | Account | Email | Password | Role | Access |
 |---------|-------|----------|------|--------|
+| Owner/Admin | zachnduane057@gmail.com | zach | Admin | Full System Access |
 | Admin | admin@elegantsteelhw.com | password123 | Admin | Full System Access |
 | Employee | employee@elegantsteelhw.com | password123 | Employee | Limited Features |
 
