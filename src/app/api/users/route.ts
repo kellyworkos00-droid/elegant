@@ -1,4 +1,5 @@
 import { prisma } from '@/lib/prisma'
+import { sendInvitationEmail } from '@/lib/email'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET() {
@@ -33,8 +34,29 @@ export async function POST(request: NextRequest) {
       },
     })
 
-    return NextResponse.json(user, { status: 201 })
+    // Send invitation email to the new user
+    const emailResult = await sendInvitationEmail({
+      recipientEmail: email,
+      recipientName: name,
+      senderName: 'Kelly Operating Systems',
+      role: role,
+      companyName: 'Elegant Steel Hardware',
+      systemUrl: `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/login`,
+    })
+
+    // Return user with email status
+    return NextResponse.json({
+      ...user,
+      emailSent: emailResult.success,
+      emailMessage: emailResult.success
+        ? 'Invitation sent successfully'
+        : emailResult.error || 'Email failed to send',
+    }, { status: 201 })
   } catch (error) {
-    return NextResponse.json({ error: 'Failed to create user' }, { status: 500 })
+    console.error('Error in POST /api/users:', error)
+    return NextResponse.json(
+      { error: 'Failed to create user', details: error instanceof Error ? error.message : 'Unknown error' },
+      { status: 500 }
+    )
   }
 }

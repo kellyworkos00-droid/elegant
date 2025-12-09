@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Plus, Mail, Phone, Trash2, ArrowLeft, Users, UserPlus, Shield } from 'lucide-react'
+import { Plus, Mail, Phone, Trash2, ArrowLeft, Users, UserPlus, Shield, CheckCircle2, AlertCircle } from 'lucide-react'
 import { useState } from 'react'
 import Footer from '@/components/Footer'
 
@@ -14,18 +14,65 @@ export default function UsersManagement() {
 
   const [showForm, setShowForm] = useState(false)
   const [newUser, setNewUser] = useState({ name: '', email: '', phone: '', role: 'Employee' })
+  const [notification, setNotification] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
+  const [isLoading, setIsLoading] = useState(false)
 
-  const handleAddUser = (e: React.FormEvent) => {
+  const handleAddUser = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (newUser.name && newUser.email) {
+    if (!newUser.name || !newUser.email) {
+      setNotification({ type: 'error', message: 'Name and email are required' })
+      return
+    }
+
+    setIsLoading(true)
+    try {
+      const response = await fetch('/api/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newUser),
+      })
+
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.error || 'Failed to create user')
+      }
+
+      const createdUser = await response.json()
+      
+      // Add to local state
       const user = {
         id: Math.max(...users.map(u => u.id), 0) + 1,
         ...newUser,
         status: 'Active'
       }
       setUsers([...users, user])
+      
+      // Show notification
+      if (createdUser.emailSent) {
+        setNotification({
+          type: 'success',
+          message: `User "${newUser.name}" created successfully! Invitation email sent to ${newUser.email}`
+        })
+      } else {
+        setNotification({
+          type: 'success',
+          message: `User "${newUser.name}" created, but email failed to send (${createdUser.emailMessage})`
+        })
+      }
+
+      // Reset form
       setNewUser({ name: '', email: '', phone: '', role: 'Employee' })
       setShowForm(false)
+
+      // Clear notification after 5 seconds
+      setTimeout(() => setNotification(null), 5000)
+    } catch (error) {
+      setNotification({
+        type: 'error',
+        message: error instanceof Error ? error.message : 'Failed to create user'
+      })
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -51,6 +98,22 @@ export default function UsersManagement() {
       </nav>
 
       <div className="max-w-7xl mx-auto px-4 py-8">
+        {/* Notification */}
+        {notification && (
+          <div className={`mb-6 p-4 rounded-lg border flex items-center gap-3 ${
+            notification.type === 'success'
+              ? 'bg-green-500/20 border-green-500/50 text-green-300'
+              : 'bg-red-500/20 border-red-500/50 text-red-300'
+          }`}>
+            {notification.type === 'success' ? (
+              <CheckCircle2 size={20} />
+            ) : (
+              <AlertCircle size={20} />
+            )}
+            <span>{notification.message}</span>
+          </div>
+        )}
+
         <Link href="/dashboard" className="inline-flex items-center gap-2 text-slate-400 hover:text-white mb-8 transition">
           <ArrowLeft size={20} />
           Back to Dashboard
@@ -141,14 +204,16 @@ export default function UsersManagement() {
               <div className="flex gap-3">
                 <button
                   type="submit"
-                  className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg transition-colors font-semibold"
+                  disabled={isLoading}
+                  className="bg-green-600 hover:bg-green-700 disabled:bg-green-800 disabled:cursor-not-allowed text-white px-6 py-2 rounded-lg transition-colors font-semibold"
                 >
-                  Create User
+                  {isLoading ? 'Creating User & Sending Email...' : 'Create User'}
                 </button>
                 <button
                   type="button"
+                  disabled={isLoading}
                   onClick={() => setShowForm(false)}
-                  className="bg-slate-700 hover:bg-slate-600 text-white px-6 py-2 rounded-lg transition-colors font-semibold"
+                  className="bg-slate-700 hover:bg-slate-600 disabled:bg-slate-800 disabled:cursor-not-allowed text-white px-6 py-2 rounded-lg transition-colors font-semibold"
                 >
                   Cancel
                 </button>
