@@ -4,19 +4,37 @@ A comprehensive web application built for Elegant Steel Hardware to manage their
 
 ## Features
 
+### Authentication & Authorization
+- **Login System**: Secure email/password authentication with demo accounts
+- **Session Management**: localStorage-based session persistence
+- **Role-Based Access**: Different features for Admin and Employee roles
+- **Mobile Dashboard**: Icon-based module access on mobile devices (looks like native apps)
+- **Protected Routes**: All business operations require authentication via middleware
+- **Logout**: Clean session cleanup with secure redirect
+
 ### Admin Portal
-- **Dashboard**: Real-time overview of active projects, pending quotes, inventory, and employee count
+- **Dashboard**: Real-time overview of active projects, pending quotes, inventory, and employee count with mobile icon grid
+- **User Management**: Manage team members, assign roles, and control access permissions
 - **Projects Management**: Create, track, and manage fabrication projects with status updates and budgets
+- **Orders & Sales**: Create orders, select customers, view/edit/print invoices
+- **Customer Statements**: Track customer balances and transaction history
 - **Inventory Management**: Track steel materials, supplies, and stock levels with low-stock alerts
 - **Client Management**: Maintain client information, contact details, and project history
 - **Quotes Management**: Create, send, and track client quotes with status tracking
+- **Performance Tracking**: Monitor employee performance metrics, completion rates, quality scores
 - **Employee Management**: Manage workforce information and roles
+- **Finances**: Track income, expenses, and profit calculations
 
 ### Employee Portal
 - **My Tasks**: View assigned fabrication tasks and track progress
-- **Time Tracking**: Log work hours and track time spent on projects
+- **Orders View**: See order status and deadlines
+- **Performance Data**: View personal performance metrics
 - **Project Status**: View overall project progress and deadlines
-- **Performance Reports**: Track individual and team performance metrics
+
+### Automated Features
+- **Email Notifications**: Automatic emails for user invitations and order confirmations
+- **Order Confirmation Emails**: Professional HTML emails sent when orders are created
+- **User Invitations**: System sends invitation emails when admin creates new users
 
 ## Tech Stack
 
@@ -65,7 +83,21 @@ npm install
 npm run dev
 ```
 
-3. Open [http://localhost:3000](http://localhost:3000) in your browser
+3. Open [http://localhost:3000](http://localhost:3000) or [http://localhost:3001](http://localhost:3001) in your browser
+
+### Login with Demo Credentials
+
+The system includes demo accounts for testing:
+
+**Admin Account:**
+- Email: `admin@elegantsteelhw.com`
+- Password: `password123`
+- Access: Full system including user management
+
+**Employee Account:**
+- Email: `employee@elegantsteelhw.com`
+- Password: `password123`
+- Access: Limited to work-related modules
 
 ### Build for Production
 
@@ -73,6 +105,27 @@ npm run dev
 npm run build
 npm run start
 ```
+
+## How to Use
+
+1. **Login**: Visit the login page with demo credentials
+2. **View Dashboard**: After login, you'll see the admin dashboard
+3. **Mobile Users**: On mobile devices, modules appear as icon tiles (like mobile apps)
+4. **Create Orders**: Use the Orders module to create and manage customer orders
+5. **Track Performance**: View employee performance metrics in the Performance module
+6. **Manage Users**: Admins can invite new team members via the User Management page
+7. **Logout**: Click the logout button in the top-right corner
+
+## Module Overview
+
+- **Orders**: Create orders, select customers, view/print invoices
+- **Customer Statements**: Track customer account balances
+- **Finances**: Monitor business income and expenses
+- **Projects**: Manage fabrication projects
+- **Inventory**: Track material stock levels
+- **Performance**: Monitor employee performance metrics
+- **Tasks**: Assign and track work tasks
+- **Users** (Admin): Manage team members and permissions
 
 ## Features by Module
 
