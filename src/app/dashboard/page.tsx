@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Footer from '@/components/Footer'
 import { BarChart3, AlertCircle, TrendingUp, Users, ArrowLeft } from 'lucide-react'
 
 export default function Dashboard() {
@@ -139,6 +140,7 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
+import Footer from '@/components/Footer'
 import { Plus, Mail, Phone, MapPin, ArrowRight, ArrowLeft, UserPlus } from 'lucide-react'
 
 export default function Clients() {
@@ -119,6 +120,7 @@ export default function Clients() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

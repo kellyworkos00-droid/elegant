@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { Plus, Mail, Phone, Badge, ArrowLeft, Users } from 'lucide-react'
 import { useState } from 'react'
+import Footer from '@/components/Footer'
 
 export default function Employees() {
   const [employees] = useState([
@@ -118,6 +119,7 @@ export default function Employees() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

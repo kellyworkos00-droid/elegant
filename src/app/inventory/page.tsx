@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
+import Footer from '@/components/Footer'
 import { Plus, AlertTriangle, Package, Warehouse, ArrowLeft } from 'lucide-react'
 
 export default function Inventory() {
@@ -141,6 +142,7 @@ export default function Inventory() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

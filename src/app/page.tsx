@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
+import Footer from '@/components/Footer'
 import {
   LayoutDashboard,
   Wrench,
@@ -194,6 +195,7 @@ export default function Home() {
           </div>
         )}
       </div>
+      <Footer />
     </div>
   )
 }

@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { CheckCircle2, Clock, AlertCircle, Zap, ArrowLeft, Filter } from 'lucide-react'
 import { useState } from 'react'
+import Footer from '@/components/Footer'
 
 export default function MyTasks() {
   const [tasks] = useState([
@@ -143,6 +144,7 @@ export default function MyTasks() {
           ))}
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

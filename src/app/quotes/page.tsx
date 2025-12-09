@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
+import Footer from '@/components/Footer'
 import { Plus, FileText, Download, Mail, Eye, ArrowLeft, DollarSign, Calendar } from 'lucide-react'
 
 export default function Quotes() {
@@ -143,6 +144,7 @@ export default function Quotes() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

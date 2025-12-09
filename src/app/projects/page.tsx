@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
+import Footer from '@/components/Footer'
 import { Plus, ArrowLeft, Edit2, Trash2, Wrench, Calendar, DollarSign, Building2 } from 'lucide-react'
 
 export default function Projects() {
@@ -170,6 +171,7 @@ export default function Projects() {
           ))}
         </div>
       </div>
+      <Footer />
     </div>
   )
 }
