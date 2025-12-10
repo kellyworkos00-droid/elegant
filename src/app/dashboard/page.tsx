@@ -4,8 +4,9 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import Footer from '@/components/Footer'
-import { BarChart3, AlertCircle, TrendingUp, Users, ArrowLeft, Settings, ShoppingCart, DollarSign, BarChart2, Award, LogOut } from 'lucide-react'
-import { getUser, logout } from '@/lib/auth'
+import GlassmorphicHeader from '@/components/GlassmorphicHeader'
+import { BarChart3, AlertCircle, TrendingUp, Users, ArrowLeft, Settings, ShoppingCart, DollarSign, BarChart2, Award } from 'lucide-react'
+import { getUser } from '@/lib/auth'
 
 interface User {
   id: number
@@ -42,35 +43,8 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      {/* Navigation */}
-      <nav className="bg-slate-900/95 backdrop-blur-md shadow-2xl border-b border-slate-700/50 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="flex items-center gap-3">
-            <img src="/elegant logo.jpg" alt="Elegant Steel Hardware" className="h-10 w-10 rounded-lg shadow-lg object-cover" />
-            <div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                Elegant Steel Hardware
-              </h1>
-              <p className="text-slate-400 text-sm">{user?.role} Dashboard</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-4">
-            {user && (
-              <div className="text-right">
-                <p className="text-white font-semibold">{user.name}</p>
-                <p className="text-slate-400 text-xs">{user.email}</p>
-              </div>
-            )}
-            <button
-              onClick={() => logout()}
-              className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-all duration-200"
-            >
-              <LogOut size={18} />
-              Logout
-            </button>
-          </div>
-        </div>
-      </nav>
+      {/* Floating Glassmorphic Header */}
+      <GlassmorphicHeader />
 
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="flex justify-between items-center mb-8">
@@ -78,12 +52,6 @@ export default function Dashboard() {
             <ArrowLeft size={20} />
             Back to Home
           </Link>
-          {user?.role === 'Admin' && (
-            <Link href="/admin/users" className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-purple-700 text-white px-4 py-2 rounded-lg hover:from-purple-500 hover:to-purple-600 transition-all duration-200 shadow-lg hover:shadow-purple-500/50 font-semibold">
-              <Settings size={18} />
-              Manage Users
-            </Link>
-          )}
         </div>
 
         <div className="space-y-8">

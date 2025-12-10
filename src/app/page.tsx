@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import Footer from '@/components/Footer'
+import GlassmorphicHeader from '@/components/GlassmorphicHeader'
 import {
   LayoutDashboard,
   Wrench,
@@ -13,36 +14,15 @@ import {
   CheckCircle,
   Clock,
   TrendingUp,
-  Menu,
-  X,
 } from 'lucide-react'
 
 export default function Home() {
   const [userType, setUserType] = useState<'admin' | 'employee' | null>(null)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
-      {/* Navigation */}
-      <nav className="bg-slate-900/95 backdrop-blur-md shadow-2xl border-b border-slate-700/50 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="flex items-center gap-3">
-            <img src="/elegant logo.jpg" alt="Elegant Steel Hardware" className="h-12 w-12 rounded-lg shadow-lg object-cover" />
-            <div>
-              <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                Elegant Steel Hardware
-              </h1>
-              <p className="text-slate-400 text-sm">Professional Fabrication Management</p>
-            </div>
-          </div>
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden text-slate-300 hover:text-white transition"
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </nav>
+      {/* Floating Glassmorphic Header */}
+      <GlassmorphicHeader />
 
       <div className="max-w-7xl mx-auto px-4 py-16">
         {!userType ? (
