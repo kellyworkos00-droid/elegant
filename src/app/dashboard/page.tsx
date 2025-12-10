@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import Footer from '@/components/Footer'
 import GlassmorphicHeader from '@/components/GlassmorphicHeader'
-import { BarChart3, AlertCircle, TrendingUp, Users, ArrowLeft, Settings, ShoppingCart, DollarSign, BarChart2, Award } from 'lucide-react'
+import { BarChart3, AlertCircle, TrendingUp, Users, Settings, ShoppingCart, DollarSign, BarChart2, Award } from 'lucide-react'
 import { getUser } from '@/lib/auth'
 
 interface User {
@@ -47,13 +47,6 @@ export default function Dashboard() {
       <GlassmorphicHeader />
 
       <div className="max-w-7xl mx-auto px-4 py-8">
-        <div className="flex justify-between items-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition">
-            <ArrowLeft size={20} />
-            Back to Home
-          </Link>
-        </div>
-
         <div className="space-y-8">
           <div>
             <h2 className="text-4xl font-bold text-white mb-2">Dashboard</h2>
