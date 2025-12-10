@@ -31,8 +31,8 @@ export default function GlassmorphicHeader() {
   return (
     <>
       {/* Floating Glassmorphic Header */}
-      <div className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-[95%] max-w-6xl">
-        <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl px-6 py-4">
+      <div className="fixed top-8 left-1/2 transform -translate-x-1/2 z-50 w-auto">
+        <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl px-8 py-4 min-w-max">
           <div className="flex items-center justify-between">
             {/* Left Section - Logo & Title */}
             <div className="flex items-center gap-3">
@@ -112,7 +112,7 @@ export default function GlassmorphicHeader() {
       </div>
 
       {/* Spacer for fixed header */}
-      <div className="h-28 sm:h-24"></div>
+      <div className="h-32"></div>
     </>
   )
 }
